@@ -13,7 +13,7 @@ public class CartController {
     private final CartService cartService;
 
     @GetMapping("{cartId}")
-    public getCardResponse getCart(@RequestParam Long cartId) {
+    public getCardResponse getCart(@PathVariable Long cartId) {
         return cartService.getCart(cartId);
     }
     @PutMapping()
@@ -22,17 +22,17 @@ public class CartController {
     }
 
     @DeleteMapping("{cartId}/empty")
-    public void emptyCart(@RequestParam Long cartId){
+    public void emptyCart(@PathVariable Long cartId){
         cartService.emptyCart(cartId);
     }
 
     @PostMapping("{cartId}/{productId}")
-    public void addProduct(@RequestParam Long cartId, @RequestParam Long productId){
+    public void addProduct(@PathVariable Long cartId, @PathVariable Long productId){
         cartService.addProduct(cartId, productId);
     }
 
     @DeleteMapping("{cartId}/{productId}")
-    public void removeProduct(@RequestParam Long cartId, @RequestParam Long productId){
+    public void removeProduct(@PathVariable Long cartId, @PathVariable Long productId){
         cartService.removeProduct(cartId, productId);
     }
 
