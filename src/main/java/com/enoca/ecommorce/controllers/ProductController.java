@@ -22,7 +22,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public GetProductResponse getProduct(Long id) {
+    public GetProductResponse getProduct(@PathVariable Long id) {
         return productService.getProduct(id);
     }
 
@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(Long id) {
+    public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
 

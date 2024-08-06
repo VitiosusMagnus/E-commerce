@@ -13,7 +13,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping("{id}")
-    public GetCustomerResponse getCustomer(@RequestParam Long id) {
+    public GetCustomerResponse getCustomer(@PathVariable Long id) {
         return customerService.getCustomer(id);
     }
     @PostMapping

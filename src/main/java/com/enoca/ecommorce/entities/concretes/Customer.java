@@ -11,6 +11,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class Customer extends BaseEntity {
 
     @Setter
@@ -20,6 +21,6 @@ public class Customer extends BaseEntity {
     @OneToMany
     private Collection<Order> orders;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
 }
