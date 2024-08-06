@@ -60,6 +60,6 @@ public class CartService {
     }
 
     protected Optional<Cart> getCartByUserId(Long userId){
-        return cartRepository.findByUserId(userId);
+        return cartRepository.findByCustomerId(userId);
     }
 }
