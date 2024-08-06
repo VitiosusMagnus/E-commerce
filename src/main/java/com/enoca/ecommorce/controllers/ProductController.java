@@ -1,6 +1,7 @@
 package com.enoca.ecommorce.controllers;
 
 import com.enoca.ecommorce.dto.request.CreateProductRequest;
+import com.enoca.ecommorce.dto.request.UpdateProductRequest;
 import com.enoca.ecommorce.dto.response.GetAllProductResponse;
 import com.enoca.ecommorce.dto.response.GetProductResponse;
 import com.enoca.ecommorce.services.ProductService;
@@ -34,4 +35,10 @@ public class ProductController {
     public void deleteProduct(Long id) {
         productService.deleteProduct(id);
     }
+
+    @PutMapping
+    public void updateProduct(@RequestBody UpdateProductRequest request) {
+        productService.updateProduct(request);
+    }
 }
+

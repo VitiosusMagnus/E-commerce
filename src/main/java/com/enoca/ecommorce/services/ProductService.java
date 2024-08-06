@@ -1,6 +1,7 @@
 package com.enoca.ecommorce.services;
 
 import com.enoca.ecommorce.dto.request.CreateProductRequest;
+import com.enoca.ecommorce.dto.request.UpdateProductRequest;
 import com.enoca.ecommorce.dto.response.GetAllProductResponse;
 import com.enoca.ecommorce.dto.response.GetProductResponse;
 import com.enoca.ecommorce.entities.concretes.Product;
@@ -34,5 +35,12 @@ public class ProductService {
 
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
+    }
+
+    public void updateProduct(UpdateProductRequest request) {
+        Product existingProduct = productRepository.findById(request.getId())
+                .orElseThrow();
+        modelMapper.map(request, existingProduct);
+        productRepository.save(existingProduct);
     }
 }
