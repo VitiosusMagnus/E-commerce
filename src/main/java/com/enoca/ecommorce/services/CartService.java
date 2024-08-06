@@ -2,11 +2,14 @@ package com.enoca.ecommorce.services;
 
 import com.enoca.ecommorce.dto.request.UpdateCartRequest;
 import com.enoca.ecommorce.dto.response.getCardResponse;
+import com.enoca.ecommorce.entities.concretes.Cart;
 import com.enoca.ecommorce.entities.concretes.Product;
 import com.enoca.ecommorce.repositories.CartRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,5 +57,9 @@ public class CartService {
             cart.getProducts().removeIf(product -> product.getId().equals(productId));
             cartRepository.save(cart);
         });
+    }
+
+    protected Optional<Cart> getCartByUserId(Long userId){
+        return cartRepository.findByUserId(userId);
     }
 }
