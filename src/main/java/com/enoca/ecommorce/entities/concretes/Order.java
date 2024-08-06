@@ -4,7 +4,6 @@ import com.enoca.ecommorce.entities.abstracts.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @Entity

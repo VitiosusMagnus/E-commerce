@@ -2,7 +2,6 @@ package com.enoca.ecommorce.services;
 
 import com.enoca.ecommorce.dto.response.GetOrderResponse;
 import com.enoca.ecommorce.dto.response.getCardResponse;
-import com.enoca.ecommorce.entities.concretes.Cart;
 import com.enoca.ecommorce.entities.concretes.Order;
 import com.enoca.ecommorce.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
