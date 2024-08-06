@@ -11,7 +11,6 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class Order extends BaseEntity {
 
     @Column()

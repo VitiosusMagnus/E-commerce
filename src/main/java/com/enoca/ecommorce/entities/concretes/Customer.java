@@ -11,9 +11,9 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class Customer extends BaseEntity {
 
+    @Setter
     @Column(name = "name")
     private String name;
 
