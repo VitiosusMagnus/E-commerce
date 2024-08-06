@@ -4,7 +4,7 @@ import com.enoca.ecommorce.entities.abstracts.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @Table(name = "carts")
 @Entity
@@ -23,5 +23,5 @@ public class Cart extends BaseEntity {
             joinColumns = @JoinColumn(name = "cart_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private Collection<Product> products;
+    private List<Product> products;
 }
