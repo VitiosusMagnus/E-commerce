@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class Order extends BaseEntity {
 
     @Column()
@@ -29,4 +30,5 @@ public class Order extends BaseEntity {
     private Customer customer;
 
     private String address;
+    private double totalPrice;
 }

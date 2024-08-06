@@ -11,9 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class GetOrderResponse {
     private Long id;
     private List<GetOrderProductResponse> products;
     private String address;
+    private double totalPrice;
 }

@@ -1,6 +1,8 @@
 package com.enoca.ecommorce.services;
 
 import com.enoca.ecommorce.dto.response.GetOrderResponse;
+import com.enoca.ecommorce.dto.response.getCardResponse;
+import com.enoca.ecommorce.entities.concretes.Cart;
 import com.enoca.ecommorce.entities.concretes.Order;
 import com.enoca.ecommorce.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,10 +36,14 @@ public class OrderService {
     }
 
     public void createOrder(Long userId, String address) {
-        cartService.getCartByUserId(userId).ifPresent(cart -> {
-            Order order = new Order(cart.getProducts(), cart.getCustomer(), address);
-            orderRepository.save(order);
-            cartService.emptyCart(cart.getId());
-        });
+        getCardResponse cart = cartService.getCart(userId);
+        Order order = Order.builder()
+                .customer(cart.getCustomer())
+                .products(cart.getProducts())
+                .address(address)
+                .totalPrice(cart.getTotalPrice())
+                .build();
+        orderRepository.save(order);
+        cartService.emptyCart(userId);
     }
 }
