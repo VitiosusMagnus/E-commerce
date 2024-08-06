@@ -23,6 +23,7 @@ public class CartService {
             Product product = modelMapper
                     .map(productService.getProduct(productId), Product.class);
             cart.getProducts().add(product);
+            updateCartTotalPrice(cart);
             cartRepository.save(cart);
         });
     }
@@ -41,6 +42,7 @@ public class CartService {
                         .map(productService.getProduct(updateCartProductRequest.getProductId()), Product.class);
                 cart.getProducts().add(product);
             });
+            updateCartTotalPrice(cart);
             cartRepository.save(cart);
         });
     }
@@ -48,6 +50,7 @@ public class CartService {
     public void emptyCart(Long cartId) {
         cartRepository.findById(cartId).ifPresent(cart -> {
             cart.getProducts().clear();
+            updateCartTotalPrice(cart);
             cartRepository.save(cart);
         });
     }
@@ -55,11 +58,18 @@ public class CartService {
     public void removeProduct(Long cartId, Long productId) {
         cartRepository.findById(cartId).ifPresent(cart -> {
             cart.getProducts().removeIf(product -> product.getId().equals(productId));
+            updateCartTotalPrice(cart);
             cartRepository.save(cart);
         });
     }
 
     protected Optional<Cart> getCartByUserId(Long userId){
         return cartRepository.findByCustomerId(userId);
+    }
+
+    private Cart updateCartTotalPrice(Cart cart){
+        double totalPrice = cart.getProducts().stream().mapToDouble(Product::getPrice).sum();
+        cart.setTotalPrice(totalPrice);
+        return cart;
     }
 }

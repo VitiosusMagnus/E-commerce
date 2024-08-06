@@ -16,4 +16,5 @@ import java.util.List;
 public class getCardResponse {
     private Customer customer;
     private List<Product> products;
+    private double totalPrice;
 }

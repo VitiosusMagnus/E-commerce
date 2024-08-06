@@ -24,4 +24,7 @@ public class Cart extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Product> products;
+
+    @Setter
+    private double totalPrice;
 }
