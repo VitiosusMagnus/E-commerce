@@ -1,7 +1,7 @@
 package com.enoca.ecommorce.controllers;
 
 import com.enoca.ecommorce.dto.request.UpdateCartRequest;
-import com.enoca.ecommorce.dto.response.getCardResponse;
+import com.enoca.ecommorce.dto.response.getCartResponse;
 import com.enoca.ecommorce.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ public class CartController {
     private final CartService cartService;
 
     @GetMapping("{cartId}")
-    public getCardResponse getCart(@PathVariable Long cartId) {
+    public getCartResponse getCart(@PathVariable Long cartId) {
         return cartService.getCart(cartId);
     }
     @PutMapping()

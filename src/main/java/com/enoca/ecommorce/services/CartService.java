@@ -1,7 +1,7 @@
 package com.enoca.ecommorce.services;
 
 import com.enoca.ecommorce.dto.request.UpdateCartRequest;
-import com.enoca.ecommorce.dto.response.getCardResponse;
+import com.enoca.ecommorce.dto.response.getCartResponse;
 import com.enoca.ecommorce.entities.concretes.Cart;
 import com.enoca.ecommorce.entities.concretes.Product;
 import com.enoca.ecommorce.repositories.CartRepository;
@@ -28,9 +28,9 @@ public class CartService {
         });
     }
 
-    public getCardResponse getCart(Long cartId) {
+    public getCartResponse getCart(Long cartId) {
         return cartRepository.findById(cartId)
-                .map(cart -> modelMapper.map(cart, getCardResponse.class))
+                .map(cart -> modelMapper.map(cart, getCartResponse.class))
                 .orElse(null);
     }
 

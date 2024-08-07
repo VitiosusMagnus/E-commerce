@@ -13,8 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class getCardResponse {
-    private Customer customer;
+public class getCartResponse {
+    private GetCartCustomerResponse customer;
     private List<Product> products;
     private double totalPrice;
 }

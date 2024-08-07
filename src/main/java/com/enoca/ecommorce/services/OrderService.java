@@ -1,7 +1,7 @@
 package com.enoca.ecommorce.services;
 
 import com.enoca.ecommorce.dto.response.GetOrderResponse;
-import com.enoca.ecommorce.dto.response.getCardResponse;
+import com.enoca.ecommorce.dto.response.getCartResponse;
 import com.enoca.ecommorce.entities.compositekeys.OrderedProductId;
 import com.enoca.ecommorce.entities.concretes.Order;
 import com.enoca.ecommorce.entities.concretes.Product;
@@ -43,7 +43,7 @@ public class OrderService {
     }
 
     public void createOrder(Long userId, String address) {
-        getCardResponse cart = cartService.getCart(userId);
+        getCartResponse cart = cartService.getCart(userId);
         validateStock(cart.getProducts());
         Order order = Order.builder()
                 .customer(cart.getCustomer())

@@ -21,6 +21,6 @@ public class Customer extends BaseEntity {
     @OneToMany
     private Collection<Order> orders;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cart cart;
 }
