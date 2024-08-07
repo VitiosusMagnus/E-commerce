@@ -12,9 +12,9 @@ import java.util.Collection;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Customer extends BaseEntity {
 
-    @Setter
     @Column(name = "name")
     private String name;
 

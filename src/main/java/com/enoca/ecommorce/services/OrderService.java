@@ -3,7 +3,9 @@ package com.enoca.ecommorce.services;
 import com.enoca.ecommorce.dto.response.GetOrderResponse;
 import com.enoca.ecommorce.dto.response.getCartResponse;
 import com.enoca.ecommorce.entities.compositekeys.OrderedProductId;
+import com.enoca.ecommorce.entities.concretes.Customer;
 import com.enoca.ecommorce.entities.concretes.Order;
+import com.enoca.ecommorce.entities.concretes.OrderedProduct;
 import com.enoca.ecommorce.entities.concretes.Product;
 import com.enoca.ecommorce.repositories.OrderRepository;
 import com.enoca.ecommorce.repositories.OrderedProductRepository;
@@ -46,13 +48,27 @@ public class OrderService {
         getCartResponse cart = cartService.getCart(userId);
         validateStock(cart.getProducts());
         Order order = Order.builder()
-                .customer(cart.getCustomer())
+                .customer(modelMapper.map(cart.getCustomer(), Customer.class))
                 .products(cart.getProducts())
                 .address(address)
                 .totalPrice(cart.getTotalPrice())
                 .build();
-        orderRepository.save(order);
+        order = orderRepository.save(order);
+        createOrderedProducts(cart.getProducts(),order);
         cartService.emptyCart(userId);
+    }
+
+    private void createOrderedProducts(List<Product> products, Order order) {
+        products.forEach(product -> {
+            orderedProductRepository.save(
+                    OrderedProduct.builder()
+                            .id(new OrderedProductId(order.getId(), product.getId()))
+                            .product(product)
+                            .order(order)
+                            .price(product.getPrice())
+                            .build()
+            );
+        });
     }
 
     private void validateStock(List<Product> products) {

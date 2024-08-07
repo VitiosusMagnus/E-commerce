@@ -1,6 +1,5 @@
 package com.enoca.ecommorce.dto.response;
 
-import com.enoca.ecommorce.entities.concretes.Customer;
 import com.enoca.ecommorce.entities.concretes.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -17,6 +17,7 @@ public class OrderController {
     public GetOrderResponse getOrder(@PathVariable Long orderId) {
         return orderService.getOrder(orderId);
     }
+
     @GetMapping("/user/{userId}")
     public List<GetOrderResponse> getOrdersByUserId(@PathVariable Long userId) {
         return orderService.getOrdersByUserId(userId);
